@@ -62,6 +62,13 @@ export function FormAddTask() {
     }
   };
 
+  const handleRemoveCategory = (index) => {
+    setTask((prev) => ({
+      ...prev,
+      categories: prev.categories.filter((_, i) => i !== index),
+    }));
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <legend className="text-2xl font-bold text-center mb-2">
@@ -122,7 +129,10 @@ export function FormAddTask() {
             key={index}
           >
             {category}
-            <DismissCircleFilled />
+            <DismissCircleFilled
+              className="ml-1 text-sm cursor-pointer"
+              onClick={() => handleRemoveCategory(index)}
+            />
           </span>
         ))}
       </div>
