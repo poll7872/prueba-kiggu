@@ -25,3 +25,5 @@ router.get("/tasks", (req, res) => {
   const tasks = taskController.getAllTasks();
   res.status(201).json(tasks);
 });
+
+export default router;
