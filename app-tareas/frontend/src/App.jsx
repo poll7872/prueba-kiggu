@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className="w-9/12 mx-auto grid grid-cols-3 mt-8">
+      <main className="w-9/12 mx-auto grid grid-cols-3 p-4 gap-3">
         {tasks.map((task) => (
           <CardTask key={task.id} task={task} />
         ))}
