@@ -25,3 +25,14 @@ export const getAllTasks = async () => {
     throw error;
   }
 };
+
+//End-point para actualiar tarea
+export const updatedTask = async (id, task) => {
+  try {
+    const response = await apiTasks.put(`/tasks/${id}`, task);
+    return response.data;
+  } catch (error) {
+    console.error("Error al obtener tareas: ", error);
+    throw error;
+  }
+};
