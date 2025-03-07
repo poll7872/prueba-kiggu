@@ -11,5 +11,17 @@ export const createTask = async (task) => {
     return response.data;
   } catch (error) {
     console.error("Error creando tarea: ", error);
+    throw error;
+  }
+};
+
+//End-point obtener tareas
+export const getAllTasks = async () => {
+  try {
+    const response = apiTasks.get("/tasks");
+    return response.data;
+  } catch (error) {
+    console.error("Error al obtener tareas: ", error);
+    throw error;
   }
 };
