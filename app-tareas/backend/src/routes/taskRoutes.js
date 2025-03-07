@@ -26,7 +26,7 @@ router.get("/tasks", (req, res) => {
   res.status(200).json(tasks);
 });
 
-//Route actualizar una nota
+//Route actualizar una tarea
 router.put("/tasks/:id", (req, res) => {
   try {
     const { title, description, state, categories } = req.body;
@@ -40,6 +40,19 @@ router.put("/tasks/:id", (req, res) => {
     res.status(200).json(task);
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }
+});
+
+//Route eliminar una tarea
+router.delete("/tasks/:id", (req, res) => {
+  try {
+    const successfully = taskController.deleteTask(parseInt(req.params.id));
+    if (successfully) {
+      //Codigo 204 con exito sin contenido
+      res.status(200).json({ message: "Tarea eliminada con exito" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
