@@ -21,4 +21,27 @@ export class TaskController {
   getAllTasks() {
     return Object.values(tasks);
   }
+
+  //Método para actualizar una tarea
+  updateTask(id, title, description, state, categories) {
+    try {
+      if (!tasks[id]) {
+        throw new Error("Tarea no encontrada");
+      }
+
+      //Nueva instancia de task para aplicar validaciones
+      const updatedTask = new Task(
+        id,
+        title || tasks[id].title,
+        description || tasks[id].description,
+        state || tasks[id].state,
+        categories || tasks[id].categories,
+      );
+
+      tasks[id] = updatedTask;
+      return updatedTask;
+    } catch (error) {
+      throw new Error(`Error al actualizar tarea: ${error.message}`);
+    }
+  }
 }
