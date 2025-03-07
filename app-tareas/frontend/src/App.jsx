@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className="w-9/12 mx-auto grid grid-cols-3">
+      <main className="w-9/12 mx-auto grid grid-cols-3 mt-8">
         <CardTask />
         <CardTask />
         <CardTask />
