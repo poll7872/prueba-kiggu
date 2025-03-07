@@ -18,8 +18,8 @@ export function Button({
 
   //Tamaños button
   const sizeStyle = {
-    small: "p-3 text-sm",
     medium: "px-4 py-2 text-base",
+    large: "px-4 py-2 text-base w-full",
   };
 
   //Combinar los Estilos
