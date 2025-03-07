@@ -12,7 +12,7 @@ export function Modal({ isOpen, onClose, children }) {
       ></div>
 
       {/* Contenido del modal */}
-      <div className="bg-white rounded-lg shadow-lg p-6 w-96 max-h-[90vh] overflow-y-auto custom-scrollbar relative mx-4 z-10 animate-[var(--animate-fade-in-down)]">
+      <div className="bg-white rounded-lg shadow-lg p-6 w-96 max-h-[90vh] relative mx-4 z-10 animate-[var(--animate-fade-in-down)]">
         {/* Botón de cerrar */}
         <button
           className="absolute top-2 right-2"

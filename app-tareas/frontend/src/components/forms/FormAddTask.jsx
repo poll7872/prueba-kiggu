@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "../Button";
 import { createTask } from "../../utils/api";
+import { DismissCircleFilled } from "@fluentui/react-icons";
 
 export function FormAddTask() {
   const [task, setTask] = useState({
@@ -8,6 +9,7 @@ export function FormAddTask() {
     description: "",
     categories: [],
   });
+  const [categoryInput, setCategoryInput] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,6 +22,7 @@ export function FormAddTask() {
         description: "",
         categories: [],
       });
+      setCategoryInput("");
     } catch (error) {
       console.error("Error al crear tarea: ", error);
     }
@@ -27,11 +30,38 @@ export function FormAddTask() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setTask({
       ...task,
       [name]: value,
     });
   };
+
+  const handleCategoryInput = (e) => {
+    const { value } = e.target;
+
+    // Mantiene lo que el usuario escrie
+    setCategoryInput(value);
+
+    // Si el valor contiene una coma, procesa las categorías
+    if (value.includes(",")) {
+      // Se divide y limpia la categoría ingresada
+      const newCategories = value
+        .split(",")
+        .map((category) => category.trim())
+        .filter((category) => category !== ""); // Ignora inputs vacíos
+
+      // Actualiza las categorías en el estado de la tarea
+      setTask((prev) => ({
+        ...prev,
+        categories: [...new Set([...prev.categories, ...newCategories])], // Evita categorías duplicadas
+      }));
+
+      // Limpia el input solo después de procesar las categorías
+      setCategoryInput("");
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <legend className="text-2xl font-bold text-center mb-2">
@@ -78,10 +108,23 @@ export function FormAddTask() {
           type="text"
           placeholder="Ej: personal, hogar, hobbie"
           className="p-2 rounded-lg border-b-4 border-purple-300 outline-none focus:border-purple-800"
-          value={task.categories}
-          onChange={handleChange}
+          value={categoryInput}
+          onChange={handleCategoryInput}
         />
         <p className="text-xs">Nota: usa una coma despues de cada palabra</p>
+      </div>
+
+      {/* Etiquetas de categories */}
+      <div className="flex gap-2 mb-4 mt-2">
+        {task.categories.map((category, index) => (
+          <span
+            className="bg-purple-600 text-white p-1 rounded-lg text-sm"
+            key={index}
+          >
+            {category}
+            <DismissCircleFilled />
+          </span>
+        ))}
       </div>
 
       <Button type="submit" size="large">
