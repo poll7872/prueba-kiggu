@@ -1,14 +1,14 @@
 import { Task } from "../models/Task.js";
 
-//Datos en memoria (simulación de BD)
+//Objeto en tiempo de ejecución (simulación de BD)
 let tasks = {};
-let nextTaskId = 1;
+let countTaskId = 1;
 
 export class TaskController {
   //Método para crear una nueva tarea
   createTask(title, description, state = "To Do", categories) {
     try {
-      const id = nextTaskId++;
+      const id = countTaskId++;
       const task = new Task(id, title, description, state, categories);
       tasks[id] = task;
       return task;
