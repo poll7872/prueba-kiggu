@@ -7,7 +7,7 @@ const apiTasks = axios.create({
 //End-point crear una nueva tarea
 export const createTask = async (task) => {
   try {
-    const response = apiTasks.post("/tasks", task);
+    const response = await apiTasks.post("/tasks", task);
     return response.data;
   } catch (error) {
     console.error("Error creando tarea: ", error);
@@ -18,7 +18,7 @@ export const createTask = async (task) => {
 //End-point obtener tareas
 export const getAllTasks = async () => {
   try {
-    const response = apiTasks.get("/tasks");
+    const response = await apiTasks.get("/tasks");
     return response.data;
   } catch (error) {
     console.error("Error al obtener tareas: ", error);

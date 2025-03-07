@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "../Button";
 import { createTask } from "../../utils/api";
 import { DismissCircleFilled } from "@fluentui/react-icons";
+import { useTasks } from "../../context/TaskContext";
 
 export function FormAddTask() {
   const [task, setTask] = useState({
@@ -10,12 +11,14 @@ export function FormAddTask() {
     categories: [],
   });
   const [categoryInput, setCategoryInput] = useState("");
+  const { addTask } = useTasks();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await createTask(task);
+      const newTask = await createTask(task);
+      addTask(newTask);
       //Limpiar form
       setTask({
         title: "",

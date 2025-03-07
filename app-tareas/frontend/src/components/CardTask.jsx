@@ -10,7 +10,7 @@ export function CardTask() {
     <>
       <article className="bg-white w-80 rounded-lg p-1 hover:border border-purple-800 hover:shadow-2xl hover:shadow-purple-900/50">
         <div className="flex items-center">
-          <NoteFilled className="text-5xl text-7xl cursor-pointer text-purple-600" />
+          <NoteFilled className="text-5xl cursor-pointer text-purple-600" />
           <div className="font-bold">
             <h2 className="text-base">Tareas U</h2>
             <p className="text-xs">Ultima modificación: 2020-19-04</p>
