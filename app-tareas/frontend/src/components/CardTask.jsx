@@ -5,8 +5,13 @@ import {
   NoteFilled,
   StatusFilled,
 } from "@fluentui/react-icons";
+import { Modal } from "./Modal";
+import { FormUpdateTask } from "./forms/FormUpdateTask";
+import { useModal } from "../hooks/useModal";
 
 export function CardTask({ task }) {
+  const addTaskModal = useModal();
+
   return (
     <>
       <article className="bg-white w-80 rounded-lg p-1 hover:border border-purple-800 hover:shadow-2xl hover:shadow-purple-900/50">
@@ -23,11 +28,19 @@ export function CardTask({ task }) {
             {task.state}
           </span>
           <div className="flex gap-2">
-            <NoteEditFilled className="text-blue-500 text-2xl cursor-pointer" />
+            <NoteEditFilled
+              onClick={addTaskModal.openModal}
+              className="text-blue-500 text-2xl cursor-pointer"
+            />
             <DeleteFilled className="text-red-500 text-2xl cursor-pointer" />
           </div>
         </div>
       </article>
+
+      {/*MODALS*/}
+      <Modal isOpen={addTaskModal.isOpen} onClose={addTaskModal.closeModal}>
+        <FormUpdateTask />
+      </Modal>
     </>
   );
 }
