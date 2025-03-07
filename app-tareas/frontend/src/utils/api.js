@@ -5,7 +5,7 @@ const apiTasks = axios.create({
 });
 
 //End-point crear una nueva tarea
-export const createNote = async (task) => {
+export const createTask = async (task) => {
   try {
     const response = apiTasks.post("/tasks", task);
     return response.data;
