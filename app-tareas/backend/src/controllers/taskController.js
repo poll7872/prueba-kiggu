@@ -44,4 +44,18 @@ export class TaskController {
       throw new Error(`Error al actualizar tarea: ${error.message}`);
     }
   }
+
+  //Método eliminar tarea
+  deleteTask(id) {
+    try {
+      if (!tasks[id]) {
+        throw new Error("Tarea no encontrada");
+      }
+
+      delete tasks[id];
+      return true;
+    } catch (error) {
+      throw new Error(`Error al eliminar la tarea: ${error.message}`);
+    }
+  }
 }
