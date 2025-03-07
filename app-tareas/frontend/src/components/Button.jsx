@@ -29,7 +29,7 @@ export function Button({
     <button type={type} className={buttonStyles} onClick={onClick}>
       {children}
       {/* Icono*/}
-      <span>{icon}</span>
+      <span className="ml-2">{icon}</span>
     </button>
   );
 }
