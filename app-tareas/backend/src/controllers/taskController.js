@@ -1,4 +1,4 @@
-import { Task } from "../models/Task";
+import { Task } from "../models/Task.js";
 
 //Datos en memoria (simulación de BD)
 let tasks = {};
