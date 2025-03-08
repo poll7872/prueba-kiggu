@@ -77,12 +77,12 @@ export function FormUpdateTask({ taskToUpdate }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <legend className="text-xl font-bold text-center mb-2">
+      <legend className="text-xl text-purple-500 font-bold text-center mb-2">
         Actualizar Tarea
       </legend>
 
       <div className="grid gap-1 mb-4 mt-2">
-        <label className="font-bold" htmlFor="title">
+        <label className="font-bold text-sm" htmlFor="title">
           Titulo:
         </label>
         <input
@@ -98,7 +98,7 @@ export function FormUpdateTask({ taskToUpdate }) {
       </div>
 
       <div className="grid gap-1 mb-4 mt-2">
-        <label className="font-bold" htmlFor="description">
+        <label className="font-bold text-sm" htmlFor="description">
           Descripción
         </label>
         <textarea
@@ -116,7 +116,7 @@ export function FormUpdateTask({ taskToUpdate }) {
       </div>
 
       <div className="grid gap-1 mb-4 mt-2">
-        <label className="font-bold" htmlFor="categories">
+        <label className="font-bold text-sm" htmlFor="categories">
           Categorias
         </label>
         <input

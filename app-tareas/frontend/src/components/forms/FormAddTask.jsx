@@ -85,7 +85,7 @@ export function FormAddTask() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <legend className="text-xl font-bold text-center mb-2">
+      <legend className="text-xl text-purple-500 font-bold text-center mb-2">
         Crear Tarea
       </legend>
 
