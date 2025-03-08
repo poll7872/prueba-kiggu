@@ -37,6 +37,17 @@ export const updatedTask = async (id, task) => {
   }
 };
 
+//End-point para actualizar state en tarea
+export const updatedState = async (id, state) => {
+  try {
+    const response = await apiTasks.put(`/tasks/${id}`, state);
+    return response.data;
+  } catch (error) {
+    console.error("Error al actualizar state en tarea: ", error);
+    throw error;
+  }
+};
+
 //End-point para eliminar tarea
 export const deleteTask = async (id) => {
   try {
