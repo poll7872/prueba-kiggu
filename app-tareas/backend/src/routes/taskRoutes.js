@@ -29,12 +29,12 @@ router.get("/tasks", (req, res) => {
 //Route actualizar una tarea
 router.put("/tasks/:id", (req, res) => {
   try {
-    const { title, description, state, categories } = req.body;
+    const { title, description, categories } = req.body;
+
     const task = taskController.updateTask(
       parseInt(req.params.id),
       title,
       description,
-      state,
       categories,
     );
     res.status(200).json(task);

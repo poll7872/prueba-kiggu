@@ -36,7 +36,7 @@ export const TasksProvider = ({ children }) => {
   const updateStateInContext = async (id, newState) => {
     try {
       //1. Actualiza en el backend
-      await updatedState(id, { state: newState });
+      await updatedState(id, newState);
 
       //2- Actualizar en el context
       setTasks((prevTasks) =>
