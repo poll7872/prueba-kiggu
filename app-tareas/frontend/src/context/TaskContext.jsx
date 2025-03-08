@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { deleteTask, getAllTasks, updatedTask } from "../utils/api";
+import { getAllTasks } from "../utils/api";
 
 const TasksContext = createContext();
 

@@ -24,7 +24,7 @@ export class TaskController {
   }
 
   //Método para actualizar una tarea
-  updateTask(id, title, description, state, categories) {
+  updateTask(id, title, description, categories) {
     try {
       if (!tasks[id]) {
         throw new Error("Tarea no encontrada");
@@ -35,7 +35,7 @@ export class TaskController {
         id,
         title || tasks[id].title,
         description || tasks[id].description,
-        state || tasks[id].state,
+        tasks[id].state,
         categories || tasks[id].categories,
       );
 
@@ -47,6 +47,23 @@ export class TaskController {
 
       tasks[id] = updatedTask;
       return updatedTask;
+    } catch (error) {
+      throw new Error(`Error al actualizar tarea: ${error.message}`);
+    }
+  }
+
+  //Método para actualizar solo el state en task
+  updateTaskState(id, newState) {
+    try {
+      if (!tasks[id]) {
+        throw new Error("Tarea no encontrada");
+      }
+
+      tasks[id].state = newState;
+      //Actualizar el campo de updatedAt
+      tasks[id].updatedAt = formatDate(new Date());
+
+      return tasks[id];
     } catch (error) {
       throw new Error(`Error al actualizar tarea: ${error.message}`);
     }

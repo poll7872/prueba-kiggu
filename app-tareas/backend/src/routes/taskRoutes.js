@@ -43,6 +43,17 @@ router.put("/tasks/:id", (req, res) => {
   }
 });
 
+//Route para actualizar state en tarea
+router.put("/tasks/state/:id", (req, res) => {
+  try {
+    const { state } = req.body;
+    const task = taskController.updateTaskState(parseInt(req.params.id), state);
+    res.status(200).json(task);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 //Route eliminar una tarea
 router.delete("/tasks/:id", (req, res) => {
   try {
