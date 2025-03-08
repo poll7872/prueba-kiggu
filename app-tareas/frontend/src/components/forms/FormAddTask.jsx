@@ -90,7 +90,7 @@ export function FormAddTask() {
       </legend>
 
       <div className="grid gap-1 mb-4 mt-2">
-        <label className="font-bold" htmlFor="title">
+        <label className="font-bold text-sm" htmlFor="title">
           Titulo:
         </label>
         <input
@@ -106,7 +106,7 @@ export function FormAddTask() {
       </div>
 
       <div className="grid gap-1 mb-4 mt-2">
-        <label className="font-bold" htmlFor="description">
+        <label className="font-bold text-sm" htmlFor="description">
           Descripción
         </label>
         <textarea
@@ -124,7 +124,7 @@ export function FormAddTask() {
       </div>
 
       <div className="grid gap-1 mb-4 mt-2">
-        <label className="font-bold" htmlFor="categories">
+        <label className="font-bold text-sm" htmlFor="categories">
           Categorias
         </label>
         <input
@@ -143,7 +143,7 @@ export function FormAddTask() {
       </div>
 
       {/* Etiquetas de categories */}
-      <div className="flex gap-2 mb-4 mt-2">
+      <div className="flex gap-2 my-2">
         {task.categories.map((category, index) => (
           <span
             className="bg-purple-600 text-white p-1 rounded-lg text-sm"
