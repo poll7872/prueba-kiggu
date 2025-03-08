@@ -38,6 +38,12 @@ export class TaskController {
         categories || tasks[id].categories,
       );
 
+      //Mantener el valor de fecha de creación
+      updatedTask.createdAt = tasks[id].createdAt;
+
+      //Actualizar el campo de updatedAt
+      updatedTask.updatedAt = new Date();
+
       tasks[id] = updatedTask;
       return updatedTask;
     } catch (error) {
