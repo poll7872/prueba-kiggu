@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getAllTasks, updatedTask } from "../utils/api";
+import { deleteTask, getAllTasks, updatedTask } from "../utils/api";
 
 const TasksContext = createContext();
 
@@ -32,12 +32,17 @@ export const TasksProvider = ({ children }) => {
     );
   };
 
+  const deleteTaskInContext = (id) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+  };
+
   return (
     <TasksContext.Provider
       value={{
         tasks,
         addTask,
         updateTaskInContext,
+        deleteTaskInContext,
       }}
     >
       {children}

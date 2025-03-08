@@ -1,10 +1,14 @@
+import { useTasks } from "../context/TaskContext";
 import { deleteTask } from "../utils/api";
 import { Button } from "./Button";
 
 export function DeleteTask({ id, onClose }) {
+  const { deleteTaskInContext } = useTasks();
+
   const handleDeleteTask = async () => {
     try {
       await deleteTask(id);
+      deleteTaskInContext(id);
       onClose();
     } catch (error) {
       console.error("Error al eliminar tarea: ", error);
