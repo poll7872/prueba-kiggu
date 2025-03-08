@@ -19,7 +19,7 @@ export function CardTask({ task }) {
           <NoteFilled className="text-7xl cursor-pointer text-purple-600" />
           <div className="font-bold">
             <h2 className="text-base">{task.title}</h2>
-            <p className="text-xs">Ultima modificación: 2020-19-04</p>
+            <p className="text-xs">Ultima modificación: {task.updatedAt}</p>
           </div>
         </div>
         <div className="flex justify-between ml-2">
