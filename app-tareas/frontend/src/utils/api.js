@@ -40,7 +40,7 @@ export const updatedTask = async (id, task) => {
 //End-point para actualizar state en tarea
 export const updatedState = async (id, state) => {
   try {
-    const response = await apiTasks.put(`/tasks/${id}`, state);
+    const response = await apiTasks.put(`/tasks/state/${id}`, state);
     return response.data;
   } catch (error) {
     console.error("Error al actualizar state en tarea: ", error);
