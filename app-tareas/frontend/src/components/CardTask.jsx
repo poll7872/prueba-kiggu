@@ -9,10 +9,12 @@ import { FormUpdateTask } from "./forms/FormUpdateTask";
 import { useModal } from "../hooks/useModal";
 import { DeleteTask } from "./DeleteTask";
 import { useTasks } from "../context/TaskContext";
+import { Task } from "./Task";
 
 export function CardTask({ task }) {
   const updateTaskModal = useModal();
   const DeleteTaskModal = useModal();
+  const taskModal = useModal();
   const { updateStateInContext } = useTasks();
 
   //Estilos de acuerdo al state
@@ -41,7 +43,10 @@ export function CardTask({ task }) {
     <>
       <article className="bg-white w-80 rounded-lg p-1 hover:border border-purple-800 hover:shadow-2xl hover:shadow-purple-900/50">
         <div className="flex items-center">
-          <NoteFilled className="text-7xl cursor-pointer text-purple-600" />
+          <NoteFilled
+            onClick={taskModal.openModal}
+            className="text-7xl cursor-pointer text-purple-600"
+          />
           <div className="font-bold">
             <h2 className="text-base">{task.title}</h2>
             <p className="text-xs">Ultima modificación: {task.updatedAt}</p>
@@ -82,6 +87,10 @@ export function CardTask({ task }) {
         onClose={DeleteTaskModal.closeModal}
       >
         <DeleteTask id={task.id} onClose={DeleteTaskModal.closeModal} />
+      </Modal>
+
+      <Modal isOpen={taskModal.isOpen} onClose={taskModal.closeModal}>
+        <Task task={task} />
       </Modal>
     </>
   );
