@@ -32,7 +32,18 @@ export const updatedTask = async (id, task) => {
     const response = await apiTasks.put(`/tasks/${id}`, task);
     return response.data;
   } catch (error) {
-    console.error("Error al obtener tareas: ", error);
+    console.error("Error al actualizar tarea: ", error);
+    throw error;
+  }
+};
+
+//End-point para eliminar tarea
+export const deleteTask = async (id) => {
+  try {
+    const response = await apiTasks.delete(`/tasks/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error al eliminar tarea: ", error);
     throw error;
   }
 };

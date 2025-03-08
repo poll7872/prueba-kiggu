@@ -14,6 +14,10 @@ export function Button({
   const colorStyles = {
     primary:
       "bg-purple-900 hover:bg-purple-800 text-white focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50",
+    secondary:
+      "bg-gray-500 text-white hover:bg-gray-600 focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50",
+    danger:
+      "bg-red-500 text-white hover:bg-red-600 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50",
   };
 
   //Tamaños button
@@ -29,7 +33,7 @@ export function Button({
     <button type={type} className={buttonStyles} onClick={onClick}>
       {children}
       {/* Icono*/}
-      <span className="ml-2">{icon}</span>
+      {icon && <span className="ml-2">{icon}</span>}
     </button>
   );
 }

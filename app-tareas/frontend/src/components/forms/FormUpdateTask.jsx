@@ -19,7 +19,7 @@ export function FormUpdateTask({ taskToUpdate }) {
       updateTaskInContext(uptTask);
       setCategoryInput("");
     } catch (error) {
-      console.error("Error al crear tarea: ", error);
+      console.error("Error al actualizar tarea: ", error);
     }
   };
 

@@ -53,7 +53,7 @@ export function CardTask({ task }) {
         isOpen={DeleteTaskModal.isOpen}
         onClose={DeleteTaskModal.closeModal}
       >
-        <DeleteTask />
+        <DeleteTask id={task.id} onClose={DeleteTaskModal.closeModal} />
       </Modal>
     </>
   );
