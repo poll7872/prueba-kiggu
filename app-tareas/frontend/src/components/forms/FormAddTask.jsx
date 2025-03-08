@@ -3,6 +3,7 @@ import { Button } from "../Button";
 import { createTask } from "../../utils/api";
 import { DismissCircleFilled } from "@fluentui/react-icons";
 import { useTasks } from "../../context/TaskContext";
+import { validationTask } from "../../utils/validation";
 
 export function FormAddTask() {
   const [task, setTask] = useState({
@@ -12,9 +13,17 @@ export function FormAddTask() {
   });
   const [categoryInput, setCategoryInput] = useState("");
   const { addTask } = useTasks();
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    //Validar campos antes de enviar
+    const validationErrors = validationTask(task);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
 
     try {
       const newTask = await createTask(task);
@@ -26,6 +35,8 @@ export function FormAddTask() {
         categories: [],
       });
       setCategoryInput("");
+      //Limpiar errors
+      setErrors({});
     } catch (error) {
       console.error("Error al crear tarea: ", error);
     }
@@ -91,6 +102,7 @@ export function FormAddTask() {
           value={task.title}
           onChange={handleChange}
         />
+        {errors.title && <p className="text-red-500 text-xs">{errors.title}</p>}
       </div>
 
       <div className="grid gap-1 mb-4 mt-2">
@@ -106,6 +118,9 @@ export function FormAddTask() {
           value={task.description}
           onChange={handleChange}
         ></textarea>
+        {errors.title && (
+          <p className="text-red-500 text-xs">{errors.description}</p>
+        )}
       </div>
 
       <div className="grid gap-1 mb-4 mt-2">
@@ -122,6 +137,9 @@ export function FormAddTask() {
           onChange={handleCategoryInput}
         />
         <p className="text-xs">Nota: usa una coma despues de cada palabra</p>
+        {errors.title && (
+          <p className="text-red-500 text-xs">{errors.categories}</p>
+        )}
       </div>
 
       {/* Etiquetas de categories */}

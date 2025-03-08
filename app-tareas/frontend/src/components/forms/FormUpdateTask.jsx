@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "../Button";
-import { createTask, updatedTask } from "../../utils/api";
+import { updatedTask } from "../../utils/api";
 import { DismissCircleFilled } from "@fluentui/react-icons";
 import { useTasks } from "../../context/TaskContext";
 
