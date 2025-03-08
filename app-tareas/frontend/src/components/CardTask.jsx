@@ -7,9 +7,11 @@ import {
 import { Modal } from "./Modal";
 import { FormUpdateTask } from "./forms/FormUpdateTask";
 import { useModal } from "../hooks/useModal";
+import { DeleteTask } from "./DeleteTask";
 
 export function CardTask({ task }) {
-  const addTaskModal = useModal();
+  const updateTaskModal = useModal();
+  const DeleteTaskModal = useModal();
 
   return (
     <>
@@ -28,17 +30,30 @@ export function CardTask({ task }) {
           </span>
           <div className="flex gap-2">
             <NoteEditFilled
-              onClick={addTaskModal.openModal}
+              onClick={updateTaskModal.openModal}
               className="text-blue-500 text-2xl cursor-pointer"
             />
-            <DeleteFilled className="text-red-500 text-2xl cursor-pointer" />
+            <DeleteFilled
+              onClick={DeleteTaskModal.openModal}
+              className="text-red-500 text-2xl cursor-pointer"
+            />
           </div>
         </div>
       </article>
 
       {/*MODALS*/}
-      <Modal isOpen={addTaskModal.isOpen} onClose={addTaskModal.closeModal}>
+      <Modal
+        isOpen={updateTaskModal.isOpen}
+        onClose={updateTaskModal.closeModal}
+      >
         <FormUpdateTask taskToUpdate={task} />
+      </Modal>
+
+      <Modal
+        isOpen={DeleteTaskModal.isOpen}
+        onClose={DeleteTaskModal.closeModal}
+      >
+        <DeleteTask />
       </Modal>
     </>
   );
