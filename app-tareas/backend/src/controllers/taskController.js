@@ -1,3 +1,4 @@
+import { formatDate } from "../helpers.js";
 import { Task } from "../models/Task.js";
 
 //Objeto en tiempo de ejecución (simulación de BD)
@@ -42,7 +43,7 @@ export class TaskController {
       updatedTask.createdAt = tasks[id].createdAt;
 
       //Actualizar el campo de updatedAt
-      updatedTask.updatedAt = new Date();
+      updatedTask.updatedAt = formatDate(new Date());
 
       tasks[id] = updatedTask;
       return updatedTask;

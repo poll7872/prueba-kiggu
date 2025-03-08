@@ -1,5 +1,4 @@
 import {
-  ArchiveFilled,
   DeleteFilled,
   NoteEditFilled,
   NoteFilled,
@@ -39,7 +38,7 @@ export function CardTask({ task }) {
 
       {/*MODALS*/}
       <Modal isOpen={addTaskModal.isOpen} onClose={addTaskModal.closeModal}>
-        <FormUpdateTask />
+        <FormUpdateTask taskToUpdate={task} />
       </Modal>
     </>
   );

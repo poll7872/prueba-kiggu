@@ -1,11 +1,4 @@
-//Formatear la fecha
-function formatDate(date) {
-  const day = String(date.getDate()).padStart(2, "0"); // Día con dos digitos
-  const month = String(date.getMonth() + 1).padStart(2, "0"); // Mes con dos ditios
-  const year = date.getFullYear();
-
-  return `${day}/${month}/${year}`; // Formato DD/MM/YYYY
-}
+import { formatDate } from "../helpers.js";
 
 export class Task {
   constructor(id, title, description, state = "To Do", categories) {
@@ -25,8 +18,7 @@ export class Task {
     this.description = description;
     this.state = state;
     this.categories = categories; //Array con strings de categories
-    const currentDate = new Date();
-    this.createdAt = formatDate(currentDate);
-    this.updatedAt = formatDate(currentDate);
+    this.createdAt = formatDate(new Date());
+    this.updatedAt = formatDate(new Date());
   }
 }
