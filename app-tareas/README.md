@@ -70,4 +70,4 @@ Sigue estos pasos para instalar y ejecutar la aplicación en tu entorno local:
 
 Puedes ver una demostración del funcionamiento de la aplicación en el siguiente video:
 
-[![Ver Video](https://vimeo.com/1063906172)](https://vimeo.com/1063906172)
+[![Ver Video](https://i.ibb.co/rf71D2vz/pagina-principal.png)](https://vimeo.com/1063906172)
