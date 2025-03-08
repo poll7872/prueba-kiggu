@@ -8,10 +8,34 @@ import { Modal } from "./Modal";
 import { FormUpdateTask } from "./forms/FormUpdateTask";
 import { useModal } from "../hooks/useModal";
 import { DeleteTask } from "./DeleteTask";
+import { useTasks } from "../context/TaskContext";
 
 export function CardTask({ task }) {
   const updateTaskModal = useModal();
   const DeleteTaskModal = useModal();
+  const { updateStateInContext } = useTasks();
+
+  //Estilos de acuerdo al state
+  const statusColors = {
+    "To Do": "text-red-500",
+    "In Progress": "text-yellow-500",
+    Done: "text-green-500",
+  };
+
+  const handleUpdateState = async () => {
+    try {
+      //ALterna entre las opciones de state
+      const nextState =
+        task.state === "To Do"
+          ? "In Progress"
+          : task.state === "In Progress"
+            ? "Done"
+            : "To Do";
+      await updateStateInContext(task.id, nextState);
+    } catch (error) {
+      console.error("Error al actualizar estado en tarea: ", error);
+    }
+  };
 
   return (
     <>
@@ -25,7 +49,11 @@ export function CardTask({ task }) {
         </div>
         <div className="flex justify-between ml-2">
           <span className="font-bold text-xs">
-            <StatusFilled className="text-red-500 text-2xl cursor-pointer" />
+            <StatusFilled
+              className={`${statusColors[task.state]} text-2xl cursor-pointer`}
+              onClick={handleUpdateState}
+            />
+
             {task.state}
           </span>
           <div className="flex gap-2">

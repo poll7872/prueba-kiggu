@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getAllTasks } from "../utils/api";
+import { getAllTasks, updatedState } from "../utils/api";
 
 const TasksContext = createContext();
 
@@ -32,6 +32,24 @@ export const TasksProvider = ({ children }) => {
     );
   };
 
+  //Actualizar el state en backend y en el context
+  const updateStateInContext = async (id, newState) => {
+    try {
+      //1. Actualiza en el backend
+      await updatedState(id, { state: newState });
+
+      //2- Actualizar en el context
+      setTasks((prevTasks) =>
+        prevTasks.map((task) =>
+          task.id === id ? { ...task, state: newState } : task,
+        ),
+      );
+    } catch (error) {
+      console.error("Error al actualizar state en tarea: ", error);
+      throw error;
+    }
+  };
+
   const deleteTaskInContext = (id) => {
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
   };
@@ -43,6 +61,7 @@ export const TasksProvider = ({ children }) => {
         addTask,
         updateTaskInContext,
         deleteTaskInContext,
+        updateStateInContext,
       }}
     >
       {children}
