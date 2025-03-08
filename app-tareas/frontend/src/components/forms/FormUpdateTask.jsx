@@ -9,13 +9,14 @@ export function FormUpdateTask({ taskToUpdate }) {
     ...taskToUpdate,
   });
   const [categoryInput, setCategoryInput] = useState("");
-  const { addTask } = useTasks();
+  const { updateTaskInContext } = useTasks();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const uptTask = await updatedTask(task.id, task);
+      updateTaskInContext(uptTask);
       setCategoryInput("");
     } catch (error) {
       console.error("Error al crear tarea: ", error);

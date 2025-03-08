@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getAllTasks } from "../utils/api";
+import { getAllTasks, updatedTask } from "../utils/api";
 
 const TasksContext = createContext();
 
@@ -24,11 +24,20 @@ export const TasksProvider = ({ children }) => {
     setTasks((prevTasks) => [...prevTasks, newTask]);
   };
 
+  const updateTaskInContext = (updatedTask) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === updatedTask.id ? updatedTask : task,
+      ),
+    );
+  };
+
   return (
     <TasksContext.Provider
       value={{
         tasks,
         addTask,
+        updateTaskInContext,
       }}
     >
       {children}
