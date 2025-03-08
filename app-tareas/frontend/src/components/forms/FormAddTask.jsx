@@ -118,7 +118,7 @@ export function FormAddTask() {
           value={task.description}
           onChange={handleChange}
         ></textarea>
-        {errors.title && (
+        {errors.description && (
           <p className="text-red-500 text-xs">{errors.description}</p>
         )}
       </div>
@@ -137,7 +137,7 @@ export function FormAddTask() {
           onChange={handleCategoryInput}
         />
         <p className="text-xs">Nota: usa una coma despues de cada palabra</p>
-        {errors.title && (
+        {errors.categories && (
           <p className="text-red-500 text-xs">{errors.categories}</p>
         )}
       </div>
