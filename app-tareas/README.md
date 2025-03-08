@@ -81,6 +81,4 @@ Sigue estos pasos para instalar y ejecutar la aplicación en tu entorno local:
 
 ---
 ## Funcionamiento del proyecto
-
-Vídeo de demostración
-showcase-app-tareas.mp4
+![funcionamiento app-tareas](https://raw.githubusercontent.com/poll7872/prueba-kiggu/master/app-tareas/Yazi-2024-11-13_09.13.07.mp4)
