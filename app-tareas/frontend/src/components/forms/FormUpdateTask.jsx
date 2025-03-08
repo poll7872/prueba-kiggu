@@ -3,6 +3,7 @@ import { Button } from "../Button";
 import { updatedTask } from "../../utils/api";
 import { DismissCircleFilled } from "@fluentui/react-icons";
 import { useTasks } from "../../context/TaskContext";
+import { validationTask } from "../../utils/validation";
 
 export function FormUpdateTask({ taskToUpdate }) {
   const [task, setTask] = useState({
@@ -10,14 +11,24 @@ export function FormUpdateTask({ taskToUpdate }) {
   });
   const [categoryInput, setCategoryInput] = useState("");
   const { updateTaskInContext } = useTasks();
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    //Validar campos antes de enviar
+    const validationErrors = validationTask(task);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
 
     try {
       const uptTask = await updatedTask(task.id, task);
       updateTaskInContext(uptTask);
       setCategoryInput("");
+      //Limpiar errors
+      setErrors({});
     } catch (error) {
       console.error("Error al actualizar tarea: ", error);
     }
@@ -83,6 +94,7 @@ export function FormUpdateTask({ taskToUpdate }) {
           value={task.title}
           onChange={handleChange}
         />
+        {errors.title && <p className="text-red-500 text-xs">{errors.title}</p>}
       </div>
 
       <div className="grid gap-1 mb-4 mt-2">
@@ -98,6 +110,9 @@ export function FormUpdateTask({ taskToUpdate }) {
           value={task.description}
           onChange={handleChange}
         ></textarea>
+        {errors.description && (
+          <p className="text-red-500 text-xs">{errors.description}</p>
+        )}
       </div>
 
       <div className="grid gap-1 mb-4 mt-2">
@@ -114,6 +129,10 @@ export function FormUpdateTask({ taskToUpdate }) {
           onChange={handleCategoryInput}
         />
         <p className="text-xs">Nota: usa una coma despues de cada palabra</p>
+
+        {errors.categories && (
+          <p className="text-red-500 text-xs">{errors.categories}</p>
+        )}
       </div>
 
       {/* Etiquetas de categories */}
