@@ -5,7 +5,7 @@ import { DismissCircleFilled } from "@fluentui/react-icons";
 import { useTasks } from "../../context/TaskContext";
 import { validationTask } from "../../utils/validation";
 
-export function FormUpdateTask({ taskToUpdate }) {
+export function FormUpdateTask({ taskToUpdate, onClose }) {
   const [task, setTask] = useState({
     ...taskToUpdate,
   });
@@ -29,6 +29,8 @@ export function FormUpdateTask({ taskToUpdate }) {
       setCategoryInput("");
       //Limpiar errors
       setErrors({});
+      //Cerrar form
+      onClose();
     } catch (error) {
       console.error("Error al actualizar tarea: ", error);
     }

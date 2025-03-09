@@ -79,7 +79,10 @@ export function CardTask({ task }) {
         isOpen={updateTaskModal.isOpen}
         onClose={updateTaskModal.closeModal}
       >
-        <FormUpdateTask taskToUpdate={task} />
+        <FormUpdateTask
+          taskToUpdate={task}
+          onClose={updateTaskModal.closeModal}
+        />
       </Modal>
 
       <Modal
