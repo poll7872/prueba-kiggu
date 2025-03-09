@@ -37,6 +37,7 @@ Sigue estos pasos para instalar y ejecutar la aplicación en tu entorno local:
 1. **Clona el repositorio**:
    ```bash
    git clone https://github.com/poll7872/prueba-kiggu
+   cd prueba-kiggu
    ```
 2. **Instala las dependencias del backend**:
    ```bash
@@ -48,14 +49,12 @@ Sigue estos pasos para instalar y ejecutar la aplicación en tu entorno local:
    cd ../frontend
    npm install
    ```
-4. **Inicia el servidor backend**:
+4. **Inicia el servidor backend**: En la ruta app-tareas/backend
    ```bash
-   cd ../backend
    npm start
    ```
-5. **Inicia la aplicación frontend**:
+5. **Inicia la aplicación frontend**: En la ruta app-tareas/frontend
    ```bash
-   cd ../frontend
    npm run dev
    ```
 6. **Accede a la aplicación**:
