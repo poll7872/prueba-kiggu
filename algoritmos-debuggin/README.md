@@ -115,3 +115,118 @@ const arr = [2, 3, 2, 5, 8, 9, 2, 3];
 
 console.log(maxFrequency(arr));
 ```
+
+---
+
+## Ejercicio 2
+
+### **Enunciado:**
+
+- Tienes un array de objetos con la forma { id, prioridad }, donde prioridad es un número de 1 a 5.
+- Se pide ordenar el array de modo que aparezcan primero todas las prioridades impares (1, 3, 5) y después todas las pares (2, 4), manteniendo el orden interno original dentro de cada categoría.
+
+### **Análisis**
+
+1. **Entrada:** Un array de objetos con la siguiente forma:
+
+   ```js
+   const tasks = [
+     { id: 1, prioridad: 3 },
+     { id: 2, prioridad: 2 },
+     { id: 3, prioridad: 5 },
+     { id: 4, prioridad: 1 },
+     { id: 5, prioridad: 4 },
+     { id: 6, prioridad: 2 },
+     { id: 7, prioridad: 3 },
+     { id: 8, prioridad: 1 },
+   ];
+   ```
+
+2. **Salida esperada:** Un nuevo array con el mismo contenido pero ordenado de acuerdo a la prioridad. Primero aparecerán los números impares y luego los pares, manteniendo el orden en que llegaron dentro de su grupo.
+
+   ```js
+   [
+     { id: 4, prioridad: 1 },
+     { id: 8, prioridad: 1 },
+     { id: 1, prioridad: 3 },
+     { id: 7, prioridad: 3 },
+     { id: 3, prioridad: 5 },
+     { id: 2, prioridad: 2 },
+     { id: 6, prioridad: 2 },
+     { id: 5, prioridad: 4 },
+   ];
+   ```
+
+### **Explicación del algoritmo**
+
+1. **Separación en grupos:** Se crean dos arrays vacíos, uno para prioridades impares y otro para pares:
+
+   ```js
+   const impares = [];
+   const pares = [];
+   ```
+
+2. **Clasificación de elementos:** Se recorre el array y se verifica si la prioridad es impar o par:
+
+   - Si no es divisible entre 2, es impar y se agrega al array de impares.
+   - Si es divisible entre 2, es par y se agrega al array de pares.
+
+   ```js
+   for (let i = 0; i < arr.length; i++) {
+     if (arr[i].prioridad % 2 === 1) {
+       impares.push(arr[i]);
+     } else {
+       pares.push(arr[i]);
+     }
+   }
+   ```
+
+3. **Ordenamiento de cada grupo:** Una vez que tenemos los dos grupos, debemos ordenarlos en orden acendente según la prioridad. Para esto, usamos el método `sort()` aplicando una función de comparación:
+
+   ```js
+   impares.sort((a, b) => a.prioridad - b.prioridad);
+   pares.sort((a, b) => a.prioridad - b.prioridad);
+   ```
+
+4. **Unión de los resultados:** Finalmente, usamos el operador de propagación `...` para fusionar los dos arrays en el orden requerido.
+
+   ```js
+   return [...impares, ...pares];
+   ```
+
+### **Código final**
+
+```js
+function ordenarPorPrioridad(arr) {
+  const impares = [];
+  const pares = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].prioridad % 2 === 1) {
+      impares.push(arr[i]);
+    } else {
+      pares.push(arr[i]);
+    }
+  }
+
+  impares.sort((a, b) => a.prioridad - b.prioridad);
+  pares.sort((a, b) => a.prioridad - b.prioridad);
+
+  return [...impares, ...pares];
+}
+
+const tasks = [
+  { id: 1, prioridad: 3 },
+  { id: 2, prioridad: 2 },
+  { id: 3, prioridad: 5 },
+  { id: 4, prioridad: 1 },
+  { id: 5, prioridad: 4 },
+  { id: 6, prioridad: 2 },
+  { id: 7, prioridad: 3 },
+  { id: 8, prioridad: 1 },
+];
+
+console.log(ordenarPorPrioridad(tasks));
+```
+
+Con este código, logramos que los objetos se ordenen según su proridad respetando el orden original dentro de cada grupo de impares y pares.
