@@ -230,3 +230,80 @@ console.log(ordenarPorPrioridad(tasks));
 ```
 
 Con este código, logramos que los objetos se ordenen según su proridad respetando el orden original dentro de cada grupo de impares y pares.
+
+---
+
+## Ejercicio de Debugging
+
+### Snippet de ejemplo
+
+```js
+app.get("/tasks/:id", (req, res) => {
+  const { id } = req.body;
+  const task = tasks.find((t) => t.id == id);
+  if (!task) {
+    res.status(200).json({ error: "Task not found" });
+  } else {
+    res.send(task);
+  }
+});
+```
+
+### **Errores identificados y correcciones**
+
+#### **1. Primer error identificado:**
+
+El código intenta obtener una tarea según su `id`, como se observa en el endpoint. Sin embargo, hay un problema en la desestructuración del `id`, ya que lo obtiene de `req.body`, lo cual es incorrecto.
+
+Dado que el `id` se pasa en el parámetro de la URL (`/tasks/:id`), la forma correcta de obtenerlo es mediante `req.params.id`. `req.params` es una propiedad proporcionada por Express que permite acceder a los parámetros definidos en la ruta:
+
+```js
+const id = req.params.id;
+```
+
+#### **2. Segundo error identificado:**
+
+Se está buscando la tarea en la colección `tasks` utilizando el método `find()`, lo cual es correcto para obtener el objeto correspondiente al `id` proporcionado. Sin embargo, si la tarea no se encuentra, se debería responder con un código de estado `404` en lugar de `200`, ya que el recurso solicitado no existe.
+
+Además, se agrega `return` para detener la ejecución de la función y evitar que continúe procesando el código.
+
+La corrección es:
+
+```js
+if (!task) {
+  res.status(404).json({ message: "Tarea no encontrada" });
+  return;
+}
+```
+
+#### **3. Tercer error identificado:**
+
+El problema está en el `else`, donde se usa `res.send(task)`. Aunque `res.send()` puede funcionar, es una mejor práctica responder con `res.status(200).json(task)` para dejar explícito que se está enviando una respuesta en formato JSON con un estado `200`, indicando éxito en la operación.
+
+La corrección es:
+
+```js
+res.status(200).json(task);
+```
+
+---
+
+### **Código corregido**
+
+```js
+app.get("/tasks/:id", (req, res) => {
+  const id = req.params.id;
+  const task = tasks.find((t) => t.id == id);
+
+  if (!task) {
+    res.status(404).json({ message: "Tarea no encontrada" });
+    return;
+  }
+
+  res.status(200).json(task);
+});
+```
+
+```
+
+```
